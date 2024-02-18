@@ -9,7 +9,7 @@ public class gestioncentroAppRunner {
 	
 	/**
 	 * Metodo de inicio (starter) para este programa
-	 * @param args sin usar ya que esta aplicacio usa una GUI
+	 * @param args sin usar ya que esta aplicacion usa una GUI
 	 */
 
 	public static void main(String[] args) {
