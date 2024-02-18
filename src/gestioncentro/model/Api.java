@@ -2,6 +2,12 @@ package gestioncentro.model;
 
 import java.sql.*;
 
+/**
+ * Consultas mejoradas
+ * TODO: Integrar estas consultas en la parte model del MVC
+ * @author diego
+ */
+
 public class Api {
 
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
