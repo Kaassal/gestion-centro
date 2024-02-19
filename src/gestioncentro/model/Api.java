@@ -61,7 +61,13 @@ public class Api {
 		}
 	}
 
-	// Método para obtener información de un alumno por nombre
+	/**
+	 * 
+	 * Mostrar la información de un alumno a partir de su nombre en campo msql Nombre_Alumnos
+	 * 
+	 * @param Statement stm
+	 * @param String nombreAlumno
+	 */
 	private static void obtenerInformacionAlumno(Statement stmt, String nombreAlumno) throws SQLException {
 		String query = "SELECT ID_Alumnos, Nombre_Alumnos, Apellido_Alumnos, DNI_Alumnos, Telefono_Alumnos, "
 				+ "centro.Nombre_Centro, ciclos.Nombre_Ciclo " + "FROM alumnos "
@@ -69,7 +75,7 @@ public class Api {
 				+ "JOIN ciclos ON alumnos.ID_Ciclo = ciclos.ID_Ciclos " + "WHERE Nombre_Alumnos = '" + nombreAlumno
 				+ "'";
 
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = ejecutarQuery(stmt,query);
 
 		while (rs.next()) {
 			System.out.println("ID_Alumnos: " + rs.getInt("ID_Alumnos"));
@@ -84,7 +90,14 @@ public class Api {
 		rs.close();
 	}
 
-	// Método para obtener información de una asignatura por nombre
+	/**
+	 * 
+	 * Mostrar la información de una asignatura a partir de su nombre en campo msql Nombre_Asignaturas
+	 * 
+	 * @param Statement stmt
+	 * @param String nombreAsignatura
+	 * 
+	 */
 	private static void obtenerInformacionAsignatura(Statement stmt, String nombreAsignatura) throws SQLException {
 		String query = "SELECT ID_Asginaturas, Nombre_Asignaturas, Descripcion_Asignaturas, "
 				+ "ciclos.Nombre_Ciclo, docentes.Nombre_Docentes " + "FROM asignaturas "
@@ -92,7 +105,7 @@ public class Api {
 				+ "JOIN docentes ON asignaturas.ID_Docente = docentes.ID_Docentes " + "WHERE Nombre_Asignaturas = '"
 				+ nombreAsignatura + "'";
 
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = ejecutarQuery(stmt,query);
 
 		while (rs.next()) {
 			System.out.println("ID_Asginaturas: " + rs.getInt("ID_Asginaturas"));
@@ -105,13 +118,20 @@ public class Api {
 		rs.close();
 	}
 
-	// Método para obtener información de un centro por nombre
+	/**
+	 * 
+	 * Mostrar la información de un centro a partir de su nombre en campo msql Nombre_Centro
+	 * 
+	 * @param Statement stmt
+	 * @param String nombreCentro
+	 * 
+	 */
 	private static void obtenerInformacionCentro(Statement stmt, String nombreCentro) throws SQLException {
 		String query = "SELECT centro.ID_Centro, centro.Nombre_Centro, centro.Telefono_Centro, centro.Direccion_Centro, ciclos.Nombre_Ciclo "
 				+ "FROM centro " + "JOIN ciclos ON centro.ID_Ciclo = ciclos.ID_Ciclos "
 				+ "WHERE centro.Nombre_Centro = '" + nombreCentro + "'";
 
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = ejecutarQuery(stmt,query);
 
 		while (rs.next()) {
 			System.out.println("ID_Centro: " + rs.getInt("ID_Centro"));
@@ -124,13 +144,20 @@ public class Api {
 		rs.close();
 	}
 
-	// Método para obtener información de un ciclo por nombre
+	/**
+	 * 
+	 * Mostrar la información de un cicloa a partir de su nombre en campo msql Nombre_Ciclo
+	 * 
+	 * @param Statement stmt
+	 * @param String nombreCiclo
+	 * 
+	 */
 	private static void obtenerInformacionCiclo(Statement stmt, String nombreCiclo) throws SQLException {
 		String query = "SELECT ID_Ciclos, Nombre_Ciclo, NumeroHoras_Ciclo, Descripcion_Ciclo, centro.Nombre_Centro "
 				+ "FROM ciclos " + "JOIN centro ON ciclos.ID_Centro = centro.ID_Centro " + "WHERE Nombre_Ciclo = '"
 				+ nombreCiclo + "'";
 
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = ejecutarQuery(stmt,query);
 
 		while (rs.next()) {
 			System.out.println("ID_Ciclos: " + rs.getInt("ID_Ciclos"));
@@ -143,7 +170,14 @@ public class Api {
 		rs.close();
 	}
 
-	// Método para obtener información de un docente por nombre
+	/**
+	 * 
+	 * Mostrar la información de un docente a partir de su nombre en campo msql Nombre_Docentes
+	 * 
+	 * @param Statement stmt
+	 * @param String nombreDocente
+	 * 
+	 */
 	private static void obtenerInformacionDocente(Statement stmt, String nombreDocente) throws SQLException {
 		String query = "SELECT ID_Docentes, Nombre_Docentes, Apellido_Docentes, DNI_Docentes, Telefono_Docentes, "
 				+ "centro.Nombre_Centro, ciclos.Nombre_Ciclo " + "FROM docentes "
@@ -151,7 +185,7 @@ public class Api {
 				+ "JOIN ciclos ON docentes.ID_Ciclo = ciclos.ID_Ciclos " + "WHERE Nombre_Docentes = '" + nombreDocente
 				+ "'";
 
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = ejecutarQuery(stmt,query);
 
 		while (rs.next()) {
 			System.out.println("ID_Docentes: " + rs.getInt("ID_Docentes"));
@@ -164,5 +198,16 @@ public class Api {
 		}
 
 		rs.close();
+	}
+
+	/*
+	
+		--Metodos privados
+	
+	 */
+	private ResultSet ejecutarQuery(Statement stmt, String query){
+
+		return stmt.executeQuery(query);
+
 	}
 }
